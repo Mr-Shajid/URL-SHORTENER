@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDb from './config/dbConfig.ts';
+import shortUrl from './routes/shortUrl.ts';
 
 dotenv.config(); //to fetch the values from the dotenv file
 connectDb();
@@ -17,9 +18,8 @@ app.use(cors( {
 }));
 
 
-app.get("/",(req,res)=> {
-    res.send("Hello World");
-});
+
+app.use("/api/", shortUrl);
 
 app.listen(port, () => {
     console.log(`Server started successfully on port: ${port}`);
